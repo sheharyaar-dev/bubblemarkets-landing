@@ -11,6 +11,8 @@ import Marquee from './components/Marquee'
 import Markets from './components/Markets'
 import Nav from './components/Nav'
 import Pricing from './components/Pricing'
+import Problem from './components/Problem'
+import SectionCta from './components/AppCta'
 import Showcase from './components/Showcase'
 import Stats from './components/Stats'
 
@@ -25,12 +27,18 @@ export default function App() {
       <main>
         <Hero />
         <Marquee />
+        {/* hook (hero) → problem → solution → how to read it */}
+        <Problem />
         <HowItWorks />
+        <SectionCta line="Got it? See it on a live market." />
         <Markets />
+        <SectionCta line="Every market is already open in your browser." />
         <Showcase />
         <Stats />
         <Features />
+        <SectionCta line="All of this starts free — no sign-up needed." />
         <Compare />
+        <SectionCta line="Seen enough? Go and look around." />
         <Pricing />
         <Developer />
         <Faq />

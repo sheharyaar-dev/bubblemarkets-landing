@@ -1,4 +1,5 @@
-import { link, SOCIALS } from '../lib/content'
+import { APPS_LIVE, link, SOCIALS } from '../lib/content'
+import { StoreButtons } from './AppCta'
 import { Wordmark } from './ui'
 
 const COLS: [string, [string, string][]][] = [
@@ -18,9 +19,15 @@ export default function Footer() {
               <Wordmark className="text-xl" />
             </a>
             <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-mist">Every market as a live bubble map — stocks, ETFs, crypto, forex, commodities, bonds and world indices.</p>
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 px-3.5 py-1.5 font-mono text-xs text-mist">
+{APPS_LIVE ? (
+              <div className="mt-5 flex flex-wrap gap-3">
+                <StoreButtons />
+              </div>
+            ) : (
+              <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 px-3.5 py-1.5 font-mono text-xs text-mist">
               iOS & Android apps <span className="rounded-full bg-lime/15 px-2 py-0.5 text-lime">Soon</span>
             </p>
+            )}
           </div>
           {COLS.map(([title, items]) => (
             <nav key={title} aria-label={title}>

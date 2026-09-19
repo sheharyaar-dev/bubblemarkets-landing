@@ -14,7 +14,7 @@ export default function HowItWorks() {
       <div className="wrap grid items-center gap-16 lg:grid-cols-2">
         <div>
           <SectionHead
-            eyebrow="Learn it in ten seconds"
+            eyebrow="How to read it — ten seconds"
             title={<>Size is value.<br />Colour is <span className="text-gradient">movement.</span></>}
             lede="That's the entire legend. Once you know it, a screen of bubbles tells you what a table of 500 rows never will: what the market is doing right now."
           />

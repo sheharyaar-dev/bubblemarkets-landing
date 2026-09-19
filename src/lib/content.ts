@@ -2,6 +2,16 @@ export const APP_URL = 'https://bubblemarkets.com'
 
 export const link = (path = '') => `${APP_URL}${path}`
 
+/**
+ * Mobile apps. Leave empty until the apps are live — the page then keeps sending people to the web product.
+ * Fill these in and download buttons appear in the hero, under every main section and in the footer.
+ * SMART_APP_LINK is the single link that routes each visitor to the right store (OneLink, Branch, etc.).
+ */
+export const APP_STORE_URL = ''
+export const PLAY_STORE_URL = ''
+export const SMART_APP_LINK = ''
+export const APPS_LIVE = Boolean(APP_STORE_URL || PLAY_STORE_URL || SMART_APP_LINK)
+
 // Tickers and moves below are illustrative — the page says so wherever they render.
 export type Bubble = { s: string; c: number; r: number }
 

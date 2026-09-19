@@ -1,7 +1,8 @@
 import { lazy, Suspense, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Play } from 'lucide-react'
-import { link } from '../lib/content'
+import { APPS_LIVE, link, SMART_APP_LINK } from '../lib/content'
+import { StoreButtons } from './AppCta'
 
 const BubbleScene = lazy(() => import('./BubbleScene'))
 
@@ -74,19 +75,25 @@ export default function Hero() {
         </h1>
 
         <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.85, ease: EASE }} className="lede mt-6 max-w-xl !text-base sm:mt-7 sm:!text-lg">
-          BubbleMarkets turns every stock, coin, currency and commodity into a bubble. Bigger means bigger market. Green means up. Red means down. That's the whole idea.
+          Following stocks, crypto and every other market across different apps, lists and charts takes time. BubbleMarkets shows you what's moving across all of them — in one visual view.
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1, ease: EASE }} className="pointer-events-auto mt-7 flex flex-col sm:mt-9 items-center gap-3 sm:flex-row">
-          <a href={link('/')} className="btn-primary group">
-            Explore the bubbles
+          <a href={APPS_LIVE && SMART_APP_LINK ? SMART_APP_LINK : link('/')} className="btn-primary group">
+            {APPS_LIVE && SMART_APP_LINK ? 'Get the app' : 'Explore the bubbles'}
             <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
           </a>
-          <a href="#how" className="btn-ghost">
+          <a href="#why" className="btn-ghost">
             <Play size={16} className="fill-current" />
             See how it works
           </a>
         </motion.div>
+
+        {APPS_LIVE && (
+          <div className="pointer-events-auto mt-5 flex flex-wrap justify-center gap-3">
+            <StoreButtons />
+          </div>
+        )}
 
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.3, duration: 1 }} className="mt-5 text-sm text-mist/80">
           Free to use. No download, no sign-up needed for the basics.

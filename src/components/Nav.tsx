@@ -5,6 +5,7 @@ import { link } from '../lib/content'
 import { Wordmark } from './ui'
 
 const LINKS = [
+  ['Why', '#why'],
   ['Markets', '#markets'],
   ['Product', '#product'],
   ['Features', '#features'],
@@ -27,9 +28,9 @@ export default function Nav() {
           solid || open ? 'border border-white/10 bg-ink/75 shadow-2xl shadow-black/40 backdrop-blur-xl' : 'border border-white/5 bg-ink/45 backdrop-blur-md'
         }`}
       >
-        <a href="#top" className="flex min-h-[44px] items-center gap-2.5">
-          <img src="/logo-icon.png" srcSet="/logo-icon@2x.png 2x" alt="" width={36} height={36} className="h-9 w-9 rounded-full" />
-          <Wordmark className="whitespace-nowrap text-lg" />
+        <a href="#top" className="flex min-h-[44px] items-center gap-2 sm:gap-2.5">
+          <img src="/logo-icon.png" srcSet="/logo-icon@2x.png 2x" alt="" width={36} height={36} className="h-8 w-8 rounded-full sm:h-9 sm:w-9" />
+          <Wordmark className="whitespace-nowrap text-base sm:text-lg" />
         </a>
         <ul className="hidden items-center gap-1 lg:flex">
           {LINKS.map(([label, href]) => (
@@ -40,12 +41,13 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <a href={link('/login')} className="hidden rounded-full px-4 py-2 text-sm text-mist transition-colors hover:text-white sm:block">
             Sign in
           </a>
-          <a href={link('/')} className="btn-primary hidden !min-h-[42px] whitespace-nowrap !px-5 text-sm min-[440px]:inline-flex">
-            Open the app
+          <a href={link('/')} className="btn-primary !min-h-[40px] whitespace-nowrap !px-4 text-[13px] sm:!min-h-[42px] sm:!px-5 sm:text-sm">
+            <span className="sm:hidden">Open app</span>
+            <span className="hidden sm:inline">Open the app</span>
           </a>
           <button type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)} className="grid h-11 w-11 cursor-pointer place-items-center rounded-full text-white hover:bg-white/10 lg:hidden">
             {open ? <X size={20} /> : <Menu size={20} />}
@@ -61,9 +63,9 @@ export default function Nav() {
               </a>
             </li>
           ))}
-          <li className="p-1 pt-2">
-            <a href={link('/')} className="btn-primary w-full">
-              Open the app
+          <li>
+            <a href={link('/login')} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 text-base text-mist hover:bg-white/5">
+              Sign in
             </a>
           </li>
         </motion.ul>
