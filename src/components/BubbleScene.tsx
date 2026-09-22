@@ -94,15 +94,42 @@ type Body = {
   speed: number
 }
 
-export default function BubbleScene({ progress }: { progress: { get: () => number } }) {
+/** Cheap probe so we never construct a renderer (which throws) on machines without WebGL. */
+function webglAvailable() {
+  try {
+    const c = document.createElement('canvas')
+    return !!(c.getContext('webgl2') || c.getContext('webgl'))
+  } catch {
+    return false
+  }
+}
+
+export default function BubbleScene({ progress, onFail }: { progress: { get: () => number }; onFail: () => void }) {
   const mount = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = mount.current
     if (!el) return
+    if (!webglAvailable()) {
+      onFail()
+      return
+    }
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' })
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' })
+    } catch (err) {
+      console.warn('[BubbleScene] renderer failed, using static fallback:', err)
+      onFail()
+      return
+    }
+    // The GPU can drop the context later (tab backgrounded, driver reset); hand over to the fallback then too.
+    const onLost = (e: Event) => {
+      e.preventDefault()
+      onFail()
+    }
+    renderer.domElement.addEventListener('webglcontextlost', onLost)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor(0x000000, 0)
     el.appendChild(renderer.domElement)
@@ -303,6 +330,7 @@ export default function BubbleScene({ progress }: { progress: { get: () => numbe
       cancelAnimationFrame(raf)
       io.disconnect()
       ro.disconnect()
+      renderer.domElement.removeEventListener('webglcontextlost', onLost)
       window.removeEventListener('pointermove', onMove)
       window.removeEventListener('pointerup', onUp)
       window.removeEventListener('pointercancel', onUp)
@@ -310,7 +338,7 @@ export default function BubbleScene({ progress }: { progress: { get: () => numbe
       renderer.dispose()
       renderer.domElement.remove()
     }
-  }, [progress])
+  }, [progress, onFail])
 
   return <div ref={mount} className="absolute inset-0" aria-hidden="true" />
 }

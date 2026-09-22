@@ -29,15 +29,18 @@ Every CTA points at `APP_URL` at the top of that file.
 | `HowItWorks` | Interactive "size = value, colour = move" explainer with sliders |
 | `Markets` | Seven asset classes — bubbles morph between markets |
 | `Showcase` + `Phone` | Sticky scroll story; CSS-built graphite Pro-Max-style handset that rotates in 3D around real product screenshots |
-| `AppCta` | Call-to-action strip under each main section + store buttons (see below) |
+| `Platforms` + `FloatingDock` | iOS / Android / Desktop button trio (hero, section strips, final CTA, footer) and the floating dock that follows the reader |
+| `AppCta` | Call-to-action strip under each main section |
+| `PurpleWash` | Fixed backdrop that breathes between navy and the logo purple as you scroll |
+| `BubbleFallback` + `SceneBoundary` | Static CSS bubble field used when WebGL is missing, fails or is lost — the page never goes blank |
 | `Stats`, `Features`, `Compare` | Counters, tilt-card bento grid, comparison table |
 | `Pricing`, `Developer`, `Faq`, `FinalCta`, `Footer` | Plans with monthly/yearly toggle, API, FAQ, parallax CTA |
 
 ## When the mobile apps go live
 
 Open `src/lib/content.ts` and fill in `APP_STORE_URL`, `PLAY_STORE_URL` and/or `SMART_APP_LINK`. Nothing else to change:
-the hero button becomes "Get the app", store buttons appear in the hero, under every main section and in the footer,
-and the web link stays available as "Open in browser". Leave them empty and every CTA keeps pointing at the web product.
+the iOS and Android buttons switch from "Coming soon" to live store links everywhere they appear (hero, section strips,
+floating dock, final CTA, footer). Desktop always opens the web app. Leave them empty and every CTA keeps pointing at the web product.
 
 ## Notes
 

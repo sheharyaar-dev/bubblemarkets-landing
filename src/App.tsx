@@ -4,6 +4,7 @@ import Developer from './components/Developer'
 import Faq from './components/Faq'
 import Features from './components/Features'
 import FinalCta from './components/FinalCta'
+import FloatingDock from './components/FloatingDock'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
@@ -12,6 +13,7 @@ import Markets from './components/Markets'
 import Nav from './components/Nav'
 import Pricing from './components/Pricing'
 import Problem from './components/Problem'
+import PurpleWash from './components/PurpleWash'
 import SectionCta from './components/AppCta'
 import Showcase from './components/Showcase'
 import Stats from './components/Stats'
@@ -23,6 +25,7 @@ export default function App() {
   return (
     <div className="grain">
       <motion.div aria-hidden style={{ scaleX }} className="fixed inset-x-0 top-0 z-[70] h-0.5 origin-left bg-lime" />
+      <PurpleWash />
       <Nav />
       <main>
         <Hero />
@@ -45,6 +48,7 @@ export default function App() {
         <FinalCta />
       </main>
       <Footer />
+      <FloatingDock />
     </div>
   )
 }

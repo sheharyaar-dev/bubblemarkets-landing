@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import { link } from '../lib/content'
+import Platforms from './Platforms'
 import { Reveal } from './ui'
 
 const ORBS: [number, number, number, string, number][] = [
@@ -40,13 +39,9 @@ export default function FinalCta() {
           <p className="lede mx-auto mt-6 max-w-xl">One glance answers it. Free to use, nothing to install, no sign-up needed for the basics.</p>
         </Reveal>
         <Reveal delay={0.2}>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href={link('/')} className="btn-primary group !min-h-[56px] !px-8 text-base">
-              Open the bubbles <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
-            </a>
-            <a href={link('/signup')} className="btn-ghost !min-h-[56px] !px-8 text-base">
-              Create a free account
-            </a>
+          <p className="mt-8 font-mono text-xs uppercase tracking-[0.25em] text-mist">Download now or try it here</p>
+          <div className="mt-4 flex justify-center">
+            <Platforms />
           </div>
         </Reveal>
       </div>
