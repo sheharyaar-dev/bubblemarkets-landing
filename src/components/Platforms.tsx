@@ -23,15 +23,15 @@ export default function Platforms({ compact = false, className = '' }: { compact
     <div className={`relative ${className}`}>
       {/* the lighter-purple halo marketing asked for behind the buttons */}
       <div aria-hidden className="absolute -inset-3 -z-10 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.45),rgba(124,92,255,0.12)_55%,transparent_75%)] blur-md" />
-      <div className={`flex flex-wrap justify-center ${compact ? 'gap-2' : 'gap-3'}`}>
+      <div className={`flex justify-center ${compact ? 'flex-nowrap gap-1.5 sm:gap-2' : 'flex-wrap gap-3'}`}>
         {items.map(({ id, label, sub, href, live, Icon }) => {
           const primary = live && (id === 'web' ? !items.some((p) => p.live && p.id !== 'web') : true)
-          const cls = `inline-flex items-center gap-3 rounded-2xl border text-left transition-colors ${compact ? 'min-h-[46px] px-4' : 'min-h-[56px] px-5'} ${
+          const cls = `inline-flex items-center gap-3 rounded-2xl border text-left transition-colors ${compact ? 'min-h-[46px] shrink px-3 sm:px-4' : 'min-h-[56px] px-5'} ${
             !live ? 'cursor-default border-white/10 bg-white/[0.03] text-mist/70' : primary ? 'border-lime/60 bg-lime text-ink hover:bg-lime-soft' : 'border-violet/50 bg-violet/25 text-white hover:bg-violet/40'
           }`
           const inner = (
             <>
-              <Icon size={compact ? 18 : 22} className="shrink-0" />
+              <Icon size={compact ? 18 : 22} className={compact ? 'hidden shrink-0 min-[400px]:block' : 'shrink-0'} />
               <span className="leading-tight">
                 <span className={`block font-semibold ${compact ? 'text-sm' : 'text-[15px]'}`}>{label}</span>
                 <span className={`block opacity-75 ${compact ? 'text-[9px] leading-none' : 'text-[11px]'}`}>{compact && live ? null : compact ? 'soon' : sub}</span>

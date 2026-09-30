@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { link } from '../lib/content'
+import { APPS_LIVE, link } from '../lib/content'
 import { Wordmark } from './ui'
 
 const LINKS = [
@@ -46,8 +46,8 @@ export default function Nav() {
             Sign in
           </a>
           <a href={link('/')} className="btn-primary !min-h-[40px] whitespace-nowrap !px-4 text-[13px] sm:!min-h-[42px] sm:!px-5 sm:text-sm">
-            <span className="sm:hidden">Get app</span>
-            <span className="hidden sm:inline">Open the app</span>
+            <span className="sm:hidden">{APPS_LIVE ? 'Get app' : 'Try free'}</span>
+            <span className="hidden sm:inline">{APPS_LIVE ? 'Get the app' : 'Try it free'}</span>
           </a>
           <button type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)} className="grid h-11 w-11 cursor-pointer place-items-center rounded-full text-white hover:bg-white/10 lg:hidden">
             {open ? <X size={20} /> : <Menu size={20} />}

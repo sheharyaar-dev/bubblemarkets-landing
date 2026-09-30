@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { APPS_LIVE } from '../lib/content'
 import Platforms from './Platforms'
 import { Reveal } from './ui'
 
@@ -39,7 +40,7 @@ export default function FinalCta() {
           <p className="lede mx-auto mt-6 max-w-xl">One glance answers it. Free to use, nothing to install, no sign-up needed for the basics.</p>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mt-8 font-mono text-xs uppercase tracking-[0.25em] text-mist">Download now or try it here</p>
+          <p className="mt-8 font-mono text-xs uppercase tracking-[0.25em] text-mist">{APPS_LIVE ? 'Download now or try it here' : 'Try BubbleMarkets free in your browser'}</p>
           <div className="mt-4 flex justify-center">
             <Platforms />
           </div>

@@ -8,7 +8,7 @@ export default function Features() {
   return (
     <section id="features" className="relative py-28 sm:py-36">
       <div className="wrap">
-        <SectionHead eyebrow="Depth behind the picture" title={<>Pretty is the hook.<br />The tools are why you stay.</>} lede="Built for active traders, not investors who check once a week." />
+        <SectionHead eyebrow="Depth behind the picture" title={<>Pretty is the hook.<br />The tools are why you stay.</>} lede="Built for active traders who want a faster way to follow the market." />
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((f, i) => {
             const Icon = ICONS[f.icon]
