@@ -36,9 +36,9 @@ Every CTA points at `APP_URL` at the top of that file.
 | `Stats`, `Features`, `Compare` | Counters, tilt-card bento grid, comparison table |
 | `Pricing`, `Developer`, `Faq`, `FinalCta`, `Footer` | Plans with monthly/yearly toggle, API, FAQ, parallax CTA |
 
-## When the mobile apps go live
+## Mobile app links
 
-Open `src/lib/content.ts` and fill in `APP_STORE_URL`, `PLAY_STORE_URL` and/or `SMART_APP_LINK`. Nothing else to change:
+The App Store and Google Play links live in `src/lib/content.ts` (`APP_STORE_URL`, `PLAY_STORE_URL`; optional `SMART_APP_LINK`). With them set:
 the iOS and Android buttons switch from "Coming soon" to live store links everywhere they appear (hero, section strips,
 floating dock, final CTA, footer). Desktop always opens the web app. Leave them empty and every CTA keeps pointing at the web product.
 
@@ -47,4 +47,4 @@ floating dock, final CTA, footer). Desktop always opens the web app. Leave them 
 - Tickers and % moves in the hero, marquee and markets stage are **illustrative** and labelled as such on the page.
 - Product screenshots in `public/shots/` were captured from the live site; re-capture when the UI changes.
 - `prefers-reduced-motion` is respected: the WebGL scene renders a single still frame and UI animation is disabled.
-- Mobile apps are shown as "Soon" until the links above are filled in; update the FAQ answer in `content.ts` at the same time.
+- The header button sends iPhone/iPad visitors to the App Store, Android to Google Play and everyone else to the web app (`appHref()` in `content.ts`).

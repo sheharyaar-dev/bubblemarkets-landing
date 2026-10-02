@@ -7,10 +7,21 @@ export const link = (path = '') => `${APP_URL}${path}`
  * Fill these in and download buttons appear in the hero, under every main section and in the footer.
  * SMART_APP_LINK is the single link that routes each visitor to the right store (OneLink, Branch, etc.).
  */
-export const APP_STORE_URL = ''
-export const PLAY_STORE_URL = ''
+export const APP_STORE_URL = 'https://apps.apple.com/app/bubblemarkets/id6802354811'
+export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.bubblemarkets.app'
 export const SMART_APP_LINK = ''
 export const APPS_LIVE = Boolean(APP_STORE_URL || PLAY_STORE_URL || SMART_APP_LINK)
+
+/** One link that sends each visitor to the right place: App Store on iPhone/iPad, Play on Android, the web app elsewhere. */
+export function appHref() {
+  if (SMART_APP_LINK) return SMART_APP_LINK
+  if (typeof navigator === 'undefined') return link('/')
+  const ua = navigator.userAgent
+  const iPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1
+  if (/iPhone|iPad|iPod/.test(ua) || iPadOS) return APP_STORE_URL || link('/')
+  if (/Android/.test(ua)) return PLAY_STORE_URL || link('/')
+  return link('/')
+}
 
 // Tickers and moves below are illustrative — the page says so wherever they render.
 export type Bubble = { s: string; c: number; r: number }
@@ -213,7 +224,7 @@ export const FAQS = [
   { q: 'How is it different from crypto-only bubble charts?', a: 'Same idea, much wider lens. Crypto-only tools stop at coins. BubbleMarkets puts stocks, ETFs, forex, commodities, bonds and world indices on the same screen, so you can compare momentum across markets instead of inside just one.' },
   { q: 'What do bubble size and colour mean?', a: 'Size is value — market cap by default, or 24h volume or % change if you prefer. Colour is direction: green is up, red is down, and the stronger the colour the bigger the move. Grey means roughly flat.' },
   { q: 'How often do prices update?', a: 'It depends on your plan and the market. Crypto and US stocks & ETFs are the fastest on every plan — from every 1–2 minutes on Free to second-by-second streaming on Professional. Forex, commodities, bonds and indices update more slowly because those sources do not publish faster.' },
-  { q: 'Is there a mobile app?', a: 'Native iOS and Android apps are on the way. Today the site works beautifully in any mobile browser — including tilt-to-move bubbles.' },
+  { q: 'Is there a mobile app?', a: 'Yes — BubbleMarkets is on the App Store for iPhone and iPad, and on Google Play for Android. The web version works in any browser too, so you can use whichever you prefer.' },
   { q: 'Is this financial advice?', a: 'No. BubbleMarkets is a visualization and research tool. Nothing on it is a recommendation to buy or sell. Do your own research.' },
 ]
 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { APPS_LIVE, link } from '../lib/content'
+import { appHref, APPS_LIVE, link } from '../lib/content'
 import { Wordmark } from './ui'
 
 const LINKS = [
@@ -45,7 +45,7 @@ export default function Nav() {
           <a href={link('/login')} className="hidden rounded-full px-4 py-2 text-sm text-mist transition-colors hover:text-white sm:block">
             Sign in
           </a>
-          <a href={link('/')} className="btn-primary !min-h-[40px] whitespace-nowrap !px-4 text-[13px] sm:!min-h-[42px] sm:!px-5 sm:text-sm">
+          <a href={APPS_LIVE ? appHref() : link('/')} className="btn-primary !min-h-[40px] whitespace-nowrap !px-4 text-[13px] sm:!min-h-[42px] sm:!px-5 sm:text-sm">
             <span className="sm:hidden">{APPS_LIVE ? 'Get app' : 'Try free'}</span>
             <span className="hidden sm:inline">{APPS_LIVE ? 'Get the app' : 'Try it free'}</span>
           </a>
